@@ -1,3 +1,4 @@
+package conexion_mysql_corva;
 import java.sql.*;
 
 
@@ -12,5 +13,6 @@ public class conexion {
         }catch(Exception e){
             
         }
+        return conex;
     }
 }
