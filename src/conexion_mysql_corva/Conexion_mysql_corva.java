@@ -8,6 +8,7 @@ public class Conexion_mysql_corva {
         conexion objConex = new conexion();
         
         objConex.conectar();
+        
     }
     
 }
