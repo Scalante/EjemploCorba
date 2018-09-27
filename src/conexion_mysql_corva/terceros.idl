@@ -8,5 +8,5 @@ module terceros {
 
         oneway void shoutdown();
 
-    }
+    };
 };
