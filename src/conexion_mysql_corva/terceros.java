@@ -2,6 +2,7 @@
 package conexion_mysql_corva;
 
 import java.sql.*;
+import javax.swing.JOptionPane;
 import terceros.*;
 
 public class terceros extends terceroPOA {
@@ -38,9 +39,11 @@ public class terceros extends terceroPOA {
                         + rs.getString(3) + " - "
                         + rs.getString(4);
             }
-            
+            //Se cierran las conexiones
+            rs.close();
+            objConec.conex.close();
         } catch (Exception e) {
-            
+              //  System.out.println("Error: "+ e.getMessage);
         }
         
         return resultado;    }
@@ -48,5 +51,18 @@ public class terceros extends terceroPOA {
     @Override
     public void shoutdown() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    public ResultSet cargarTercero(){
+        ResultSet resultado = null;
+        try {
+            String sql = "Select nombres, apellidos, telefono from terceros";
+            objConec.conectar();
+            Statement st = objConec.conex.createStatement();
+            resultado = st.executeQuery(sql);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"Error: "+ e.getMessage());
+        }
+        return resultado;
     }
 }
