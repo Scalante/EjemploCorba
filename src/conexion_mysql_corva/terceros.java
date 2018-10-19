@@ -10,19 +10,57 @@ public class terceros extends terceroPOA {
 
     @Override
     public boolean insertartercero(String nombres, String apellidos, int telefono) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        boolean resultado = false;
+        
+        try {
+            String sql= "insert into terceros (nombres,apellidos,telefono)values('"+nombres+"','"+apellidos+"','"+telefono+"')";
+            objConec.conectar();
+            Statement st = objConec.conex.createStatement();
+            int valor = st.executeUpdate(sql);
+            if (valor>0){
+                resultado = true;
+            }
+            objConec.conex.close();
+            st.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al insertar. "+e.getMessage());
+        }
+        return resultado;
     }
 
     @Override
     public boolean actualizartercero(int id, String nombres, String apellidos, int telefono) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         boolean resultado = false;
+        
+        try {
+            String sql = "update tercero set nombres = '"+nombres+"',apellidos = '"+apellidos+"',telefono = '"+telefono+"' where id = '"+id+"'";
+           
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al insertar. "+e.getMessage());
+        }
+        return resultado;
     }
 
     @Override
     public boolean eliminartercero(int id) {
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         boolean resultado = false;
+        
+        try {
+            String sql = "Delete from terceros where id = "+id;
+            objConec.conectar();
+            Statement st = objConec.conex.createStatement();
+            int valor = st.executeUpdate(sql);
+            if (valor>0){
+                resultado = true;
+            }
+            objConec.conex.close();
+            st.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error al insertar. "+e.getMessage());
+        }
 
+        return resultado;
     }
 
     @Override
